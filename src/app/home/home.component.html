@@ -4,44 +4,43 @@
 
     <div class="form-group">
       <label>First name</label>
-      <input type="text" class="form-control" required name="firstName" ngModel >
+      <input type="text" class="form-control" required name="firstName" 
+        [ngModel]='model.firstName' (ngModelChange)='toUpperCase($event)'>
     </div>
     
     <div class="form-group">
       <label>Last name</label>
-      <input type="text" class="form-control" required name="lastName" ngModel >
+      <input type="text" class="form-control" required name="lastName" [(ngModel)]='model.lastName' >
     </div>
 
     <div class="checkbox">
       <label>
-        <input type="checkbox" name="is-full-time" ngModel> Full-time employee
+        <input type="checkbox" name="is-full-time" [(ngModel)]='model.isFullTime' > Full-time employee
       </label>
     </div>
 
     <label>Payment type</label>
     <div class="radio">
       <label>
-        <input type="radio" name="pay-type" value="w2" checked>W2
+        <input type="radio" name="pay-type" [(ngModel)]='model.paymentType' value="w2" checked>W2
       </label>
     </div>
     <div class="radio">
       <label>
-        <input type="radio" name="pay-type" value="1099">1099
+        <input type="radio" name="pay-type" [(ngModel)]='model.paymentType' value="1099">1099
       </label>
     </div>
 
     <div class="form-group">
       <label>Primary language</label>
-      <select class="form-control">
-        <option *ngFor="let language of languages" >{{language}}</option>
+      <select class="form-control" [(ngModel)]='model.language' name="primaryLanguage" >
+        <option *ngFor="let language of languages">{{language}}</option>
       </select>
-    </div>
-
-    <div class="form-group">
-      <label>Date hired</label>
-      <input type="date" class="form-control">
     </div>
 
     <button class="btn btn-primary" >Ok</button>
   </form>
+
+  Model: {{ model | json }} <br>
+  Angular: {{ formVariable.value | json }}
 </div>
