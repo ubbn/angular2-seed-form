@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 
 import { AboutComponent } from './about/about.component';
+import { DataRepository } from './services/data-repository.service';
 import { HomeComponent } from './home/home.component';
 import { RepoBrowserComponent } from './github/repo-browser/repo-browser.component';
 import { RepoListComponent } from './github/repo-list/repo-list.component';
@@ -33,7 +34,8 @@ import { ContactComponent } from './contact/contact.component';
     RouterModule.forRoot(rootRouterConfig, { useHash: true })
   ],
   providers: [
-    GithubService
+    GithubService,
+    DataRepository
   ],
   bootstrap: [ AppComponent ]
 })

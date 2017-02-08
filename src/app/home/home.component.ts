@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms/src/directives';
+import { Component, OnInit } from '@angular/core';
+
+import { DataRepository } from '../services/data-repository.service';
 import { Employee } from '../models/employee.model';
 
 @Component({
@@ -6,10 +9,33 @@ import { Employee } from '../models/employee.model';
   styleUrls: ['./home.component.css'],
   templateUrl: './home.component.html'
 })
-export class HomeComponent {
-  languages = ['English', 'Spanish', 'Swedish', 'Other'];
+export class HomeComponent implements OnInit {
+  languages = [];
   model: Employee = new Employee('Bat', 'Dorj', true, '1099', 'Swedish');
   isLanguageInvalid: boolean = false;
+
+  constructor(private repository: DataRepository) { 
+  }
+
+  ngOnInit(): void {
+    this.repository.getLanuages()
+      .subscribe(
+        data => this.languages = data.languages,
+        error => console.log("get error: ", error)
+      );
+  }
+
+  submitForm(form: NgForm) {
+    // validation can go here
+    if (this.isLanguageInvalid)
+      return;
+
+    this.repository.postEmpployeeForm(form.value)
+      .subscribe(
+        data => console.log('Success: ', data),
+        error => console.log('Error: ', error)
+      )
+  }
 
   toUpperCase(value: string): void {
     if (value.length > 0)

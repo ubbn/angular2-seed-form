@@ -1,6 +1,7 @@
-<div class="container"> 
+<div *ngIf="languages.length == 0">Form is loading</div>
+<div class="container" *ngIf="languages.length > 0">
   <h3>Angular 2 forms</h3>
-  <form #formVariable="ngForm" novalidate>
+  <form #formVariable="ngForm" (submit)="submitForm(formVariable)" novalidate>
 
     <div class="form-group" [class.has-error]="firstName.invalid && firstName.touched">
       <label class="control-label">First name</label>
