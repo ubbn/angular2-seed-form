@@ -9,11 +9,17 @@ import { Employee } from '../models/employee.model';
 export class HomeComponent {
   languages = ['English', 'Spanish', 'Swedish', 'Other'];
   model: Employee = new Employee('Bat', 'Dorj', true, '1099', 'Swedish');
+  isLanguageInvalid: boolean = false;
 
   toUpperCase(value: string): void {
     if (value.length > 0)
       this.model.firstName = value.charAt(0).toUpperCase() + value.slice(1);
     else
       this.model.firstName = value;
+  }
+
+  validateLanguage(value): void {
+    console.log(value);
+    this.isLanguageInvalid = this.model.language === 'default';
   }
 }
