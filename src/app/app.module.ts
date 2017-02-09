@@ -15,6 +15,7 @@ import { RepoListComponent } from './github/repo-list/repo-list.component';
 import { RepoDetailComponent } from './github/repo-detail/repo-detail.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { ContactComponent } from './contact/contact.component';
+import { ButtonsModule, DatepickerModule, TimepickerModule, RatingModule } from 'ng2-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,10 @@ import { ContactComponent } from './contact/contact.component';
     ContactComponent
   ],
   imports: [
+    ButtonsModule.forRoot(),
+    DatepickerModule.forRoot(),
+    RatingModule.forRoot(),
+    TimepickerModule.forRoot(),
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

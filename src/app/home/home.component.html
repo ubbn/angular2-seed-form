@@ -1,6 +1,6 @@
 <div *ngIf="languages.length == 0">Form is loading</div>
 <div class="container" *ngIf="languages.length > 0">
-  <h3>Angular 2 forms</h3>
+  <h3>Employee Data Form</h3>
   <form #formVariable="ngForm" (submit)="submitForm(formVariable)" novalidate>
 
     <div class="form-group" [class.has-error]="firstName.invalid && firstName.touched">
@@ -25,16 +25,34 @@
       </label>
     </div>
 
-    <label>Payment type</label>
-    <div class="radio">
-      <label>
-        <input type="radio" name="pay-type" [(ngModel)]='model.paymentType' value="w2" checked>W2
-      </label>
+    <div class="form-group">
+      <label>Has insurance</label>
+      <button type="button" [class.btn-primary]="hasInsured === 'yes'"
+        class="btn" name="hasInsured"
+        [(ngModel)]="hasInsured" btnCheckbox
+        btnCheckboxTrue="yes" btnCheckboxFalse="no">
+        {{ hasInsured }}
+      </button>
     </div>
-    <div class="radio">
-      <label>
-        <input type="radio" name="pay-type" [(ngModel)]='model.paymentType' value="1099">1099
-      </label>
+
+    <div class="form-group">
+      <label>Payment type</label>
+      <div class="radio">
+        <label>
+          <input type="radio" name="pay-type" [(ngModel)]='model.paymentType' value="w2" checked>W2
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="pay-type" [(ngModel)]='model.paymentType' value="1099">1099
+        </label>
+      </div>
+
+      <label name="pay-type" class="btn btn-primary" [(ngModel)]="model.paymentType"
+         btnRadio="w2">W2</label>
+      <label name="pay-type" class="btn btn-primary" [(ngModel)]="model.paymentType" btnRadio="1099">1099</label>
+      <label name="pay-type" class="btn btn-primary" [(ngModel)]="model.paymentType"
+         btnRadio="Unspecified">Unspecified</label>
     </div>
 
     <div class="form-group" [class.has-error]="isLanguageInvalid">
@@ -46,6 +64,23 @@
         <option value="default">Select a language</option>
         <option *ngFor="let language of languages">{{language}}</option>
       </select>
+    </div>
+
+    <div class="form-group">
+      <label>Hired date time</label>
+      <datepicker name="hireDate" [(ngModel)]="model.dateHired"
+        [minDate]="minDate">
+      </datepicker>
+      <timepicker name="hireDate" [(ngModel)]="model.dateHired">
+      </timepicker>
+    </div>
+
+    <div class="form-group">
+      <label>Satisfaction</label>
+      <rating [(ngModel)]="model.satisfaction" 
+        name="satisfaction" [max]="5"
+        [titles]="['one','two','three']">Satisfaction
+      </rating>
     </div>
 
     <button class="btn btn-primary" type="submit"

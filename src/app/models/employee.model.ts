@@ -5,5 +5,7 @@ export class Employee {
     public isFullTime: boolean,
     public paymentType: string,
     public language: string,
+    public dateHired: Date,
+    public satisfaction: number
   ){}
 }

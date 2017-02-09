@@ -11,8 +11,10 @@ import { Employee } from '../models/employee.model';
 })
 export class HomeComponent implements OnInit {
   languages = [];
-  model: Employee = new Employee('Bat', 'Dorj', true, '1099', 'Swedish');
+  model: Employee = new Employee('Bat', 'Dorj', true, '1099', 'Swedish', new Date('Feb 22 2017 1:00 PM'), 4);
   isLanguageInvalid: boolean = false;
+  minDate: Date = new Date('Feb 05 2017');
+  hasInsured: string = 'no';
 
   constructor(private repository: DataRepository) { 
   }
